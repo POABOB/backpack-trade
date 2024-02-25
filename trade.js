@@ -33,7 +33,7 @@ const tradeMarket = async () => {
 
     // 買入 SOL
     document.getElementsByClassName('bg-greenPrimaryButtonBackground')[0].click()
-    await new Promise(resolve => setTimeout(resolve, 750)); 
+    await new Promise(resolve => setTimeout(resolve, 1000)); 
 
     
     if (isLastest) {
@@ -49,7 +49,7 @@ const tradeMarket = async () => {
     await new Promise(resolve => setTimeout(resolve, 100)); 
     // 賣出 SOL
     document.getElementsByClassName('bg-redPrimaryButtonBackground')[0].click()
-    await new Promise(resolve => setTimeout(resolve, 750)); 
+    await new Promise(resolve => setTimeout(resolve, 1000)); 
     // 切換至 Buy
     document.getElementsByClassName('border-b-baseBorderMed')[0].click()
     counter++;
