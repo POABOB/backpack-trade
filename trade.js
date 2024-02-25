@@ -37,7 +37,8 @@ const tradeMarket = async () => {
 
     
     if (isLastest) {
-        await stopTrade();
+        console.log('交易停止');
+        clearInterval(timer);
         return;
     }
 
@@ -55,11 +56,6 @@ const tradeMarket = async () => {
     counter++;
 }
 
-const stopTrade = () => {
-    console.log('交易停止');
-    clearInterval(timer);
-}
-
 // 改變掛單類型
 const changeOrderType = async () => {
     if (tradeType == 0) {
@@ -74,9 +70,8 @@ const changeOrderType = async () => {
 
 // 確認交易次數是否達標
 const checkVolume = async () => {
-    const isLastest = false;
-    const balanceArray = document.getElementsByClassName('_ls-167744059')[5].textContent.split(' ');
-    const balance = balanceArray[0];
+    let isLastest = false;
+    const balance = document.getElementsByClassName('is_SizableText font_body _col-314282491 _ff-299667014 _fow-233016140 _ls-167744059 _fos-12px _lh-222976573 _dsp-inline _bxs-border-box _ww-break-word _mt-0px _mr-0px _mb-0px _ml-0px')[0].textContent.split(' ')[0];
 
     if (tradeVolume === 1 && parseFloat(balance) < stopUsdc) {
         console.log(`餘額已低於${stopUsdc} usdc，已停止`)
@@ -89,9 +84,5 @@ const checkVolume = async () => {
     return isLastest;
 }
 
-// 3s 循环一次，想停止，刷新页面即可
-if (tradeType === 1) {
-    timer = setInterval(tradeLimit, 5000);
-} else {
-    timer = setInterval(tradeMarket, 5000);
-}
+// 3秒一次，如果需要停止，請重新整理頁面
+timer = setInterval(tradeMarket, 5000);
